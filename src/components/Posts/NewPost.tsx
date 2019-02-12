@@ -1,22 +1,15 @@
 import React from "react";
 import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
 import PostForm from "./PostForm";
-
-const ADD_POST = gql`
-  mutation addPost($title: String!, $body: String!) {
-    createPost(data: { status: PUBLISHED, title: $title, body: $body }) {
-      id
-      title
-      body
-    }
-  }
-`;
+import {ADD_POST} from '../../queries';
 
 export default () => {
   return (
+    <div>
+      <h1>New Post</h1>
     <Mutation mutation={ADD_POST}>
       {addPost => <PostForm handleSubmit={addPost} />}
     </Mutation>
+    </div>
   );
 };

@@ -23,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema": "apollo-codegen introspect-schema https://api-euwest.graphcms.com/v1/cjrw13l2y0c6f01i6f2k6918s/master --output ./src/schema.json",
+    "types": "apollo-codegen generate ./src/**/queries.ts --addTypename --schema ./src/schema.json --target typescript --output ./src/__generated__/types.ts"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +37,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "graphql-code-generator": "^0.16.1",
-    "graphql-codegen-typescript-react-apollo-template": "^0.16.1"
+    "@types/graphql": "^14.0.5",
+    "apollo-codegen": "0.20.2"
   }
 }

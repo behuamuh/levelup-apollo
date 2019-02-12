@@ -3,9 +3,9 @@ import "./App.css";
 import ApolloClient, { HttpLink, InMemoryCache, gql } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import Input from "./Posts/Input";
 import Post from "./Posts/Post";
 import Posts from "./Posts/Posts";
+import NewPost from "./Posts/NewPost";
 
 // const client = new ApolloClient({
 //   link: new HttpLink({
@@ -29,16 +29,19 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <div className="App">
+        <div className="App">
             <header className="App-header">
-              <Link to="/">Home</Link>
-              <Link to="/post/new">Add new post</Link>
+              <Link to={'/'}>
+                <h1 className="App-title">GraphQL is Great</h1>
+              </Link>
             </header>
-            <Switch>
-              <Route path="/" exact component={Posts} />
-              <Route path="/post/new" exact component={Input} />
-              <Route path="/post/:id" component={Post} />
-            </Switch>
+            <main>
+              <Switch>
+                <Route exact path="/" component={Posts} />
+                <Route exact path="/post/new" component={NewPost} />
+                <Route path="/post/:id" component={Post} />
+              </Switch>
+            </main>
           </div>
         </BrowserRouter>
       </ApolloProvider>

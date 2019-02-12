@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 
 export default (props: any) => {
-  const [title, changeTitle] = useState("");
-  const [body, changeBody] = useState("");
+  const { post = {} } = props;
+  const [title, changeTitle] = useState(post.title || "");
+  const [body, changeBody] = useState(post.body || "");
+  const { id = "" } = post;
 
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>): void => {
     changeTitle(event.target.value);
@@ -18,7 +20,13 @@ export default (props: any) => {
       <label>Body of new post</label>
       <input value={body} onChange={handleBody} type="text" />
       <button
-        onClick={() => props.handleSubmit({ variables: { title, body } })}
+        className='button'
+        onClick={() =>
+          props.handleSubmit({ variables: { title, body, id } }).then(() => {
+            changeTitle("");
+            changeBody("");
+          }).catch( (e:any ) => console.log(e))
+        }
       >
         Add post
       </button>

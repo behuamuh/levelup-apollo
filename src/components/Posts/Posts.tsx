@@ -1,16 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
-import gql from "graphql-tag";
-
-const POSTS_QUERY = gql`
-  query allPosts {
-    posts {
-      id
-      title
-    }
-  }
-`;
+import {POSTS_QUERY} from '../../queries';
 
 export default () => (
   <Query query={POSTS_QUERY}>
@@ -19,13 +10,15 @@ export default () => (
       if (error) return <p>ERROR</p>;
 
       return (
-        <ul>
+        <div><Link className='button' to="/post/new">Add new post</Link>
+        <ul className="posts-listing">
           {data.posts.map((post: any) => (
             <li key={post.id}>
               <Link to={`/post/${post.id}`}>{post.title}</Link>
             </li>
           ))}
         </ul>
+        </div>
       );
     }}
   </Query>
