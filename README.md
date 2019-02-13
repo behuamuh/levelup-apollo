@@ -1,6 +1,6 @@
-##Apollo Client c React
+## Apollo Client c React
 
-В этом приложении нарабатывал практику работы с API GraphQL с React и Apollo. Узнал о том, как работает Apollo Client. 
+В этом приложении нарабатывал практику работы с API GraphQL с React и Apollo, Typescript. Узнал о том, как работает Apollo Client.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
