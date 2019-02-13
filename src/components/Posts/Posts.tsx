@@ -5,7 +5,7 @@ import {POSTS_QUERY} from '../../queries';
 
 export default () => (
   <Query query={POSTS_QUERY}>
-    {({ data, error, loading }) => {
+    {({ data, error, loading, fetchMore }) => {
       if (loading) return <p>Loading</p>;
       if (error) return <p>ERROR</p>;
 
@@ -18,6 +18,17 @@ export default () => (
             </li>
           ))}
         </ul>
+        <button className='button' onClick={()=> {
+          fetchMore({
+            variables: {skip: data.posts.length},
+            updateQuery: (prev,{fetchMoreResult}) => {
+              if (!fetchMoreResult) return prev;
+              return Object.assign({}, prev, {
+                posts: [...prev.posts, ...fetchMoreResult.posts]
+              })
+            }
+          })
+        }}>Load more...</button>
         </div>
       );
     }}

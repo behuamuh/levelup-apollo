@@ -17,12 +17,13 @@ export const POST_QUERY = gql`
       body
       title
     }
+    isEditMode @client
   }
 `;
 
 export const POSTS_QUERY = gql`
-query allPosts {
-  posts {
+query allPosts($skip: Int) {
+  posts(orderBy:createdAt_DESC, first: 3, skip: $skip) {
     id
     title
   }

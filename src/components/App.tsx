@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import ApolloClient, { HttpLink, InMemoryCache, gql } from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import Post from "./Posts/Post";
 import Posts from "./Posts/Posts";
@@ -14,10 +12,6 @@ import NewPost from "./Posts/NewPost";
 //   cache: new InMemoryCache()
 // });
 
-const client = new ApolloClient({
-  uri: "https://api-euwest.graphcms.com/v1/cjrw13l2y0c6f01i6f2k6918s/master"
-});
-
 // client
 //   .query({
 //     query: testQuery
@@ -27,7 +21,7 @@ const client = new ApolloClient({
 class App extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
+      
         <BrowserRouter>
         <div className="App">
             <header className="App-header">
@@ -44,7 +38,6 @@ class App extends Component {
             </main>
           </div>
         </BrowserRouter>
-      </ApolloProvider>
     );
   }
 }

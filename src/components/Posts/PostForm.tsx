@@ -25,6 +25,7 @@ export default (props: any) => {
           props.handleSubmit({ variables: { title, body, id } }).then(() => {
             changeTitle("");
             changeBody("");
+            props.onSuccess && props.onSuccess();
           }).catch( (e:any ) => console.log(e))
         }
       >
